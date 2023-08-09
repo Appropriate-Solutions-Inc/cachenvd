@@ -1,9 +1,6 @@
-defmodule Cachenvd.Router do
+defmodule Cachenvd.LookupPlug do
   @moduledoc """
-  Route National Vulnerability Database (NVD) lookups.
-
-  Supports
-  - CVE: Vulnerabilities
+  Plug to route NVD lookups.
   """
   use Plug.Router
 
@@ -17,10 +14,8 @@ defmodule Cachenvd.Router do
   plug(:dispatch)
 
   get "/rest/json/cves/2.0" do
-    nvd_api_key = Application.get_env(:cachenvd, :keys)[:nvd_api_key]
-    IO.puts(nvd_api_key)
-    put_resp_content_type(conn, "application/json")
-    send_resp(conn, 200, '["hello", "world"]')
+    put_resp_content_type(conn, "text/json")
+    send_resp(conn, 200, "['hello']")
   end
 
   match _ do
