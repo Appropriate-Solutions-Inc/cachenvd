@@ -16,6 +16,18 @@ defmodule Cachenvd.Router do
   plug(:match)
   plug(:dispatch)
 
+  get "/test/req" do
+    # tack ?conn.query_string onto request.
+    resp = Req.get!("https://AppropriateSolutions.com/")
+    # IO.inspect(conn)
+    IO.puts('body: ' ++ resp.body)
+    IO.puts('status: ' ++ Integer.to_string(resp.status))
+    # content-type is in the resp.headers list. Need to extract.
+    # IO.inspect(resp.headers)
+    # IO.puts('Concent type: ' ++ resp.headers["content-type"])
+    send_resp(conn, 200, "Hello from req")
+  end
+
   get "/rest/json/cves/2.0" do
     nvd_api_key = Application.get_env(:cachenvd, :keys)[:nvd_api_key]
     IO.puts(nvd_api_key)

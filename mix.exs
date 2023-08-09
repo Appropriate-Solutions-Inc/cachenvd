@@ -23,6 +23,7 @@ defmodule Cachenvd.MixProject do
   defp deps do
     [
       {:bandit, ">=0.7.7"},
+      {:req, "~> 0.3.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:stream_data, "~> 0.6", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
