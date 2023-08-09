@@ -19,6 +19,8 @@ defmodule Cachenvd.Router do
   get "/rest/json/cves/2.0" do
     nvd_api_key = Application.get_env(:cachenvd, :keys)[:nvd_api_key]
     IO.puts(nvd_api_key)
+    _query_params = fetch_query_params(conn).params
+
     put_resp_content_type(conn, "application/json")
     send_resp(conn, 200, '["hello", "world"]')
   end
