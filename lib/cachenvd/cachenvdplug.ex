@@ -1,4 +1,4 @@
-defmodule HelloPlug do
+defmodule Cachenvd.Plug do
   import Plug.Conn
 
   def init(options) do
