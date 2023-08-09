@@ -1,33 +1,29 @@
-defmodule Cachenvd.Plug do
+defmodule Cachenvd.LookupPlug do
   @moduledoc """
   Plug to route NVD lookups.
   """
-  import Plug.Conn
+  use Plug.Router
 
-  def init(options) do
-    options
+  if Mix.env() == :dev do
+    use Plug.Debugger
   end
 
-  def call(conn, _opts) do
-    conn
-    |> nvd_api()
+  use Plug.ErrorHandler
+
+  plug(:match)
+  plug(:dispatch)
+
+  get "/rest/json/cves/2.0" do
+    put_resp_content_type(conn, "text/json")
+    send_resp(conn, 200, "['hello']")
   end
 
-  defp nvd_api(conn) when conn.path_info == ["rest", "json", "cves", "2.0"] do
-    conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(200, "Hello World")
+  match _ do
+    send_resp(conn, 404, "Resource not found.")
   end
 
-  defp nvd_api(conn) when conn.path_info == ["favicon.ico"] do
-    conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(404, "")
-  end
-
-  defp nvd_api(conn) do
-    conn
-    |> put_resp_content_type("text/plain")
-    |> send_resp(404, "Not found")
+  @impl Plug.ErrorHandler
+  def handle_errors(conn, %{kind: _kind, reason: _reason, stack: _stack}) do
+    send_resp(conn, conn.status, "Unknown error")
   end
 end

@@ -8,7 +8,7 @@ defmodule Cachenvd.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {Bandit, plug: Cachenvd.Plug}
+      {Bandit, plug: Cachenvd.LookupPlug}
       # Starts a worker by calling: Cachenvd.Worker.start_link(arg)
       # {Cachenvd.Worker, arg}
     ]
