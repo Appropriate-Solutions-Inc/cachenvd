@@ -1,4 +1,7 @@
 defmodule Cachenvd.Plug do
+  @moduledoc """
+  Plug to route NVD lookups.
+  """
   import Plug.Conn
 
   def init(options) do
