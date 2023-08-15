@@ -24,3 +24,6 @@ cachenvd-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Soft-link to nvd-data.csv in development environment.
+nvd-data.csv
