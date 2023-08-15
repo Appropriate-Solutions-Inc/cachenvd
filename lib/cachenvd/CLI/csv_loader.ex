@@ -5,6 +5,7 @@ defmodule Cachenvd.CLI.CsvLoader do
 
   # Source: https://jacobswanner.com/development/2022/nimble-csv-maps/
 
+  use Amnesia
   alias NimbleCSV.RFC4180, as: CSV
 
   @doc """
@@ -20,8 +21,12 @@ defmodule Cachenvd.CLI.CsvLoader do
     |> File.stream!()
     |> CSV.parse_stream(skip_headers: false)
     |> Stream.transform(nil, fn
-      headers, nil -> {[], headers}
-      row, headers -> {[Enum.zip(headers, row) |> Map.new()], headers}
+      headers, nil ->
+        {[], headers}
+
+      row, headers ->
+        {[Enum.zip(headers, row) |> Map.new()], headers}
+        # row, headers -> {[Enum.zip(headers, row) |> Map.new()], headers}
     end)
     |> Enum.to_list()
 

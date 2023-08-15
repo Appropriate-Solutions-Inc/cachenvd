@@ -27,3 +27,6 @@ cachenvd-*.tar
 
 # Soft-link to nvd-data.csv in development environment.
 nvd-data.csv
+
+# Mnesia database
+Mnesia.*/

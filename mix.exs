@@ -26,6 +26,7 @@ defmodule Cachenvd.MixProject do
     [
       {:bandit, ">=0.7.7"},
       {:nimble_csv, "~> 1.2"},
+      {:amnesia, "~> 0.2.8"},
       {:req, "~> 0.3.0"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:stream_data, "~> 0.6", only: [:dev, :test], runtime: false},
