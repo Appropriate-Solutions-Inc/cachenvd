@@ -1,7 +1,7 @@
 github_url = "https://github.com/Appropriate-Solutions-Inc/cachenvd"
 
 [version]
-current = "0.0.0"
+current = "0.0.1"
 
 # Example of a semver regexp.
 # Make sure this matches current_version before
