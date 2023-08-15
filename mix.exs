@@ -1,10 +1,12 @@
 defmodule Cachenvd.MixProject do
   use Mix.Project
 
+  @version "0.0.0"
+
   def project do
     [
       app: :cachenvd,
-      version: "0.0.0",
+      version: @version,
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps()
