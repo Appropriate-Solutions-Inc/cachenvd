@@ -1,16 +1,15 @@
-# mix amnesia.create -d CacheNvdDatabase --disk
+defmodule(Cachenvd.DB) do
+  @moduledoc """
+  Database handling routines.
+  """
+  require Amnesia
+  require Amnesia.Helper
 
-# Examples
-# https://github.com/meh/amnesia
-# https://code.tutsplus.com/store-everything-with-elixir-and-mnesia--cms-29821a
+  alias CacheNvdDatabase.CacheNvdCve
 
-use Amnesia
-
-defdatabase CacheNvdDatabase do
-  # Define CacheNVD database.
-
-  deftable Cve, [:cve_id, :cve] do
-    @type t :: %Cve{cve_id: String.t(), cve: String.t()}
-    # Not using helper functions as this is a single flat table.
+  def get_cve(cve_id) do
+    Amnesia.transaction do
+      CacheNvdCve.read(cve_id)
+    end
   end
 end
