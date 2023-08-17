@@ -9,7 +9,13 @@ defmodule(Cachenvd.DB) do
 
   def get_cve(cve_id) do
     Amnesia.transaction do
-      CacheNvdCve.read(cve_id)
+      case CacheNvdCve.read(cve_id) do
+        nil ->
+          {:unknown, nil}
+
+        cve ->
+          {:ok, cve.cve}
+      end
     end
   end
 end

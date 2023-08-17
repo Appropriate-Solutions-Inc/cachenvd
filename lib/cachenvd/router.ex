@@ -16,15 +16,19 @@ defmodule Cachenvd.Router do
 
   use Plug.ErrorHandler
 
+  if Mix.env() == :dev do
+    use Plug.Debugger
+  end
+
+  import Cachenvd.CvePlug
+  alias Cachenvd.CvePlug
+
   plug(:match)
   plug(:dispatch)
 
-  get "/rest/json/cves/2.0" do
-    put_resp_content_type(conn, "text/json")
-    send_resp(conn, 200, "['hello']")
-  end
+  forward("/rest/json/cves/2.0", to: CvePlug, init_opts: [])
 
-  match _ do
+  match(_) do
     send_resp(conn, 404, "Resource not found.")
   end
 
