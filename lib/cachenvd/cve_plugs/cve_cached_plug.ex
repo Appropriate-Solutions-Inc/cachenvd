@@ -14,8 +14,7 @@ defmodule Cachenvd.CveCachedPlug do
   end
 
   def call(conn, _opts) do
-    cve_id = conn.query_params["cveId"]
-    cve = DB.get_cve(cve_id)
+    cve = DB.get_cve(conn.assigns[:cve_id])
 
     case cve do
       {:unknown, _} ->

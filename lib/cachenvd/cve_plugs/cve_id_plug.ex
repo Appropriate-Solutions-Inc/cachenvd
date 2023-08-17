@@ -23,13 +23,13 @@ defmodule Cachenvd.CveIdPlug do
 
     case params do
       %{"cveId" => value} ->
-        IO.puts("Has cveID query parameter: #{value}")
+        conn
+        |> assign(:cve_id, value)
 
       _ ->
         put_resp_content_type(conn, "text/html")
         send_resp(conn, 400, "Request is missing the cveId parameter.")
+        conn
     end
-
-    conn
   end
 end
