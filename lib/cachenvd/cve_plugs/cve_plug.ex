@@ -6,6 +6,7 @@ defmodule Cachenvd.CvePlug do
   use Plug.Builder
 
   plug(Cachenvd.CveIdPlug)
+  plug(Cachenvd.NvdApiKeyPlug)
   plug(Cachenvd.CveCachedPlug)
   plug(Cachenvd.CveLookupPlug)
 end

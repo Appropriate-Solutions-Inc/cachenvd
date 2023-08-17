@@ -20,7 +20,6 @@ defmodule Cachenvd.Router do
     use Plug.Debugger
   end
 
-  import Cachenvd.CvePlug
   alias Cachenvd.CvePlug
 
   plug(:match)
