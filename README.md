@@ -4,6 +4,12 @@ TODO
 
 - Add description
 
+## Commands
+
+```elixir
+mix run --no-halt
+```
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed

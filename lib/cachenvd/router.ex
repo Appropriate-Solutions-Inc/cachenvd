@@ -1,7 +1,13 @@
-defmodule Cachenvd.LookupPlug do
+defmodule Cachenvd.Router do
   @moduledoc """
-  Plug to route NVD lookups.
+  Route National Vulnerability Database (NVD) lookups.
+
+  Supports
+  - CVE: Vulnerabilities
+
+  All else is status 404
   """
+
   use Plug.Router
 
   if Mix.env() == :dev do
