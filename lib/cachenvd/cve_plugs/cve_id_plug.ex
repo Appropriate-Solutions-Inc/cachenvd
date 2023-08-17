@@ -27,9 +27,10 @@ defmodule Cachenvd.CveIdPlug do
         |> assign(:cve_id, value)
 
       _ ->
-        put_resp_content_type(conn, "text/html")
-        send_resp(conn, 400, "Request is missing the cveId parameter.")
         conn
+        |> put_resp_content_type("text/html")
+        |> send_resp(400, "Request is missing the cveId parameter.")
+        |> halt
     end
   end
 end

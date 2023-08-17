@@ -7,4 +7,5 @@ defmodule Cachenvd.CvePlug do
 
   plug(Cachenvd.CveIdPlug)
   plug(Cachenvd.CveCachedPlug)
+  plug(Cachenvd.CveLookupPlug)
 end
