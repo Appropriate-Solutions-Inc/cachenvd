@@ -11,7 +11,8 @@ TODO
 mix run --no-halt
 
 # Curl example
-curl -vvv -H 'apiKey:<YourKey>' https://services.nvd.nist.gov/rest/json/cves/2.0\?cveId\=CVE-2023-4030
+curl -vvv https://services.nvd.nist.gov/rest/json/cves/2.0\?cveId\=CVE-2023-4030
+curl -vvv http://localhost:4000/rest/json/cves/2.0\?cveId\=CVE-2023-4030
 ```
 
 ## Installation

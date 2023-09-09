@@ -6,6 +6,7 @@ defmodule Cachenvd.CvePlug do
   use Plug.Builder
 
   plug(Cachenvd.CveIdPlug)
-  plug(Cachenvd.CveCachedPlug)
+  plug(Cachenvd.CveCacheLookupPlug)
   plug(Cachenvd.CveLookupPlug)
+  plug(Cachenvd.CveThrottlePlug)
 end

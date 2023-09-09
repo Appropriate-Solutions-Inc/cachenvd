@@ -1,4 +1,4 @@
-defmodule Cachenvd.CveCachedPlug do
+defmodule Cachenvd.CveCacheLookupPlug do
   @moduledoc """
   Attempt cache lookup of cve_id.
 
