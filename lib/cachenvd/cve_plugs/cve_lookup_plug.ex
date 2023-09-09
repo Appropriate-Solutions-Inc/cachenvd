@@ -14,8 +14,23 @@ defmodule Cachenvd.CveLookupPlug do
   end
 
   def call(conn, _opts) do
-    put_resp_content_type(conn, "json/application")
-    send_resp(conn, 200, 'To Be Implemented')
+    cve_id = conn.assigns[:cve_id]
+    url = "https://services.nvd.nist.gov/rest/json/cves/2.0\?cveId=#{cve_id}"
+
+    headers =
+      if conn.assigns[:has_nvd_api_key] do
+        [
+          ~c"apiKey",
+          conn.assigns[:nvd_api_key]
+        ]
+      else
+        []
+      end
+
+    resp = Req.get!(url <> cve_id, headers: headers)
+
     conn
+    |> put_resp_content_type("json/application")
+    |> send_resp(200, ~c"To Be Implemented")
   end
 end
